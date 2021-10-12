@@ -1,5 +1,6 @@
 package com.example.risajklerview;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,13 +9,22 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.LinkedList;
 import java.util.zip.Inflater;
 
 //tutaj 2 create
 //implements method wszystkie
 public class ZakupyAdapter extends RecyclerView.Adapter<ZakupyAdapter.ProduktViewHolder> {
     private LayoutInflater inflater;
-    private ListaProduktow listaProduktowObject = new ListaProduktow();
+    private LinkedList<String> listaProduktow;
+
+    public ZakupyAdapter(Context context,
+                         ListaProduktow listaProduktowObiekt) {
+        inflater = LayoutInflater.from(context);
+        this.listaProduktow =
+                listaProduktowObiekt.ListaProduktow;
+    }
+
     @NonNull
     @Override
     public ProduktViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -27,13 +37,13 @@ public class ZakupyAdapter extends RecyclerView.Adapter<ZakupyAdapter.ProduktVie
     @Override
     public void onBindViewHolder(@NonNull ProduktViewHolder holder, int position) {
         //metoda wywoływana przez RecyclerView w celu wypełnienia danymi widoku
-        holder.productTextView.setText(listaProduktowObject.ListaProduktow.get(position));
+        holder.productTextView.setText(listaProduktow.get(position));
     }
 
     @Override
     public int getItemCount() {
         //zwraca liczbe elementow w calej liscie
-        return listaProduktowObject.ListaProduktow.size();
+        return listaProduktow.size();
     }
 //tutaj pierwszy create
 //implements konstructor
