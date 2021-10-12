@@ -3,7 +3,7 @@ package com.example.risajklerview;
 import java.util.LinkedList;
 
 public class ListaProduktow {
-    public static LinkedList<String> ListaProduktow = new LinkedList<>();
+    public LinkedList<String> ListaProduktow = new LinkedList<>();
     public ListaProduktow(){
         ListaProduktow.addLast("Mleko");
         ListaProduktow.addLast("Jogurt");

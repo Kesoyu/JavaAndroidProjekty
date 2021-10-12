@@ -3,6 +3,7 @@ package com.example.risajklerview;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,6 +14,7 @@ import java.util.zip.Inflater;
 //implements method wszystkie
 public class ZakupyAdapter extends RecyclerView.Adapter<ZakupyAdapter.ProduktViewHolder> {
     private LayoutInflater inflater;
+    private ListaProduktow listaProduktowObject = new ListaProduktow();
     @NonNull
     @Override
     public ProduktViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -25,18 +27,23 @@ public class ZakupyAdapter extends RecyclerView.Adapter<ZakupyAdapter.ProduktVie
     @Override
     public void onBindViewHolder(@NonNull ProduktViewHolder holder, int position) {
         //metoda wywoływana przez RecyclerView w celu wypełnienia danymi widoku
-        holder.itemView.setText
+        holder.productTextView.setText(listaProduktowObject.ListaProduktow.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        //zwraca liczbe elementow w calej liscie
+        return listaProduktowObject.ListaProduktow.size();
     }
 //tutaj pierwszy create
 //implements konstructor
     public class ProduktViewHolder extends RecyclerView.ViewHolder{
-        public ProduktViewHolder(@NonNull View itemView, ZakupyAdapter Adapter) {
+    private TextView productTextView;
+    ZakupyAdapter zakupyAdapter;
+        public ProduktViewHolder(@NonNull View itemView, ZakupyAdapter adapter) {
             super(itemView);
+            productTextView = itemView.findViewById(R.id.textView);
+            this.zakupyAdapter = adapter;
         }
     }
 }
