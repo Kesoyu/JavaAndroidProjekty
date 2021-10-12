@@ -24,7 +24,8 @@ public class ZakupyAdapter extends RecyclerView.Adapter<ZakupyAdapter.ProduktVie
 
     @Override
     public void onBindViewHolder(@NonNull ProduktViewHolder holder, int position) {
-
+        //metoda wywoływana przez RecyclerView w celu wypełnienia danymi widoku
+        holder.itemView.setText
     }
 
     @Override
