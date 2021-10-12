@@ -47,7 +47,7 @@ public class ZakupyAdapter extends RecyclerView.Adapter<ZakupyAdapter.ProduktVie
     }
 //tutaj pierwszy create
 //implements konstructor
-    public class ProduktViewHolder extends RecyclerView.ViewHolder{
+    public class ProduktViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     private TextView productTextView;
     ZakupyAdapter zakupyAdapter;
         public ProduktViewHolder(@NonNull View itemView, ZakupyAdapter adapter) {
@@ -55,5 +55,11 @@ public class ZakupyAdapter extends RecyclerView.Adapter<ZakupyAdapter.ProduktVie
             productTextView = itemView.findViewById(R.id.textView);
             this.zakupyAdapter = adapter;
         }
+
+    @Override
+    public void onClick(View view) {
+        int indeksListy = getLayoutPosition();
+        String produkt = listaProduktow.get(indeksListy);
     }
+}
 }
