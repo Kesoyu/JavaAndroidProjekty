@@ -4,19 +4,26 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private ArrayList<Product> products = new ArrayList<>();
     private RecyclerView zakupyRecyclerView;
     private ZakupyAdapter zakupyAdapter;
-
+    private SharedPreferences listaSharedPrefences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +37,10 @@ public class MainActivity extends AppCompatActivity {
 //        create class ProduktViewHolder
 //        -implements method
 //        main activity wypełnienie RecyclerView itemami
-        products.add(new Product("Mleko"));
-        products.add(new Product("Chleb"));
+//        products.add(new Product("Mleko"));
+//        products.add(new Product("Chleb"));
+        listaSharedPrefences = getPreferences(MODE_PRIVATE);
+        products = odczytajSharedPrefrences();
         zakupyRecyclerView = findViewById(R.id.recyclerview);
         zakupyAdapter = new ZakupyAdapter(this,products);
         zakupyRecyclerView.setAdapter(zakupyAdapter);
@@ -58,5 +67,29 @@ public class MainActivity extends AppCompatActivity {
                 zakupyAdapter.usunZlisty();
             }
         });
+    }
+    private void zapiszSharedPreferences(){
+        SharedPreferences.Editor editor = listaSharedPrefences.edit();
+        Gson gson = new Gson();
+        String listaGson = gson.toJson(products);
+        editor.putString("LISTA_Z",listaGson);
+        editor.apply();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        zapiszSharedPreferences();
+    }
+    //deserializcaja danych
+    private ArrayList<Product> odczytajSharedPrefrences(){
+        String gsonLista = listaSharedPrefences.getString("LISTA_Z","");
+        Gson gson = new Gson();
+        Type typ = new TypeToken<List<Product>>(){}.getType();
+        ArrayList<Product> productsFromGson = gson.fromJson(gsonLista,typ);
+        if(productsFromGson == null){
+            productsFromGson=new ArrayList<>();
+        }
+        return  productsFromGson;
     }
 }

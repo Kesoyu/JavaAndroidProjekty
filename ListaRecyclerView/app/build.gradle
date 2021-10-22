@@ -37,5 +37,6 @@ dependencies {
     //zaleznosci recyclerView
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     //po modyfikacji sync Now
+    implementation 'com.google.code.gson:gson:2.8.8'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }
