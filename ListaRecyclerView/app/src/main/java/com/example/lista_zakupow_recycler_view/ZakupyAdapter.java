@@ -21,7 +21,18 @@ public class ZakupyAdapter extends RecyclerView.Adapter<ZakupyAdapter.ProduktVie
         inflater = LayoutInflater.from(context);
         this.products = products;
     }
-
+    //dodawanie do listy zakpów
+    //dodajemy do ArrayList produkty
+    //aktaulizujemy wyświetlanie
+    public void dodajProdukt(Product produkt){
+        products.add(produkt);
+        notifyItemInserted(products.size()-1);
+    }
+    //usuwanie z listy zakupów
+    public void usunZlisty(){
+        products.removeIf(x-> x.isZaznaczony());
+        notifyDataSetChanged();
+    }
     @NonNull
     @Override
     public ProduktViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
