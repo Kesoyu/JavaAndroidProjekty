@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Lista_zakupow_recycler_view</string>
+    <string name="dodaj">dodaj</string>
+    <string name="usun">usuń</string>
+</resources>
