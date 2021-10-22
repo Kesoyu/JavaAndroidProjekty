@@ -1,6 +1,7 @@
 package com.example.lista_zakupow_recycler_view;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         zakupyRecyclerView = findViewById(R.id.recyclerview);
         zakupyAdapter = new ZakupyAdapter(this,products);
         zakupyRecyclerView.setAdapter(zakupyAdapter);
-        zakupyRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        zakupyRecyclerView.setLayoutManager(new GridLayoutManager(this,2));
         Button dodajButton = (Button) findViewById(R.id.button);
         dodajButton.setOnClickListener(new View.OnClickListener() {
             @Override
